@@ -10,7 +10,7 @@ export const LoginForm = () => {
     e.preventDefault();
     try {
       await login(formData);
-      // Redirecionar o usuário após login bem-sucedido
+
     } catch (err) {
       setError((err as Error).message);
     }

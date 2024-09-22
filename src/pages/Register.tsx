@@ -6,7 +6,7 @@ export const Register: React.FC = () => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
-    name: '',
+    firstName: '',
     lastName: '',
   });
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -36,8 +36,8 @@ export const Register: React.FC = () => {
           <input
             type="text"
             placeholder="Nome"
-            value={formData.name}
-            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            value={formData.firstName}
+            onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
             className="w-full mb-4 p-2 border rounded"
           />
           <input
