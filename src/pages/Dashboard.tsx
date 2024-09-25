@@ -48,7 +48,7 @@ export const Dashboard: React.FC = () => {
     fetchUserData();
   }, [navigate]);
 
-  // Carregar os itens do usuário
+  // Carregar os itens do usuário baseado na empresa
   useEffect(() => {
     if (userData?.empresa) {
       const fetchItems = async () => {
@@ -59,7 +59,8 @@ export const Dashboard: React.FC = () => {
         }
 
         try {
-          const response = await axios.get('http://localhost:3000/item', {
+          // Faz a requisição para buscar os itens da empresa do usuário
+          const response = await axios.get(`http://localhost:3000/item/empresa/${userData.empresa.id}`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -78,6 +79,7 @@ export const Dashboard: React.FC = () => {
         }
 
         try {
+          // Faz a requisição para buscar os estoques da empresa do usuário
           const response = await axios.get('http://localhost:3000/estoques', {
             headers: {
               Authorization: `Bearer ${token}`,
