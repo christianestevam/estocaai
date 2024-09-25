@@ -1,4 +1,3 @@
-// src/pages/CompanyRegister.tsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { registerCompany } from '../services/companyService';
@@ -30,35 +29,61 @@ export const CompanyRegister: React.FC = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white p-8 shadow-md rounded-lg">
-        <h2 className="text-2xl font-bold mb-4">Cadastrar Empresa</h2>
+      <div className="bg-white p-8 shadow-md rounded-lg max-w-md w-full">
+        <h2 className="text-2xl font-bold mb-4 text-center">Cadastrar Empresa</h2>
         {error && <div className="text-red-500 mb-4">{error}</div>}
-        <form onSubmit={handleSubmit}>
-          <input
-            type="email"
-            placeholder="Email da Empresa"
-            value={formData.email}
-            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-            className="w-full mb-4 p-2 border rounded"
-          />
-          <input
-            type="text"
-            placeholder="CNPJ (XX.XXX.XXX/XXXX-XX)"
-            value={formData.CNPJ}
-            onChange={handleCNPJChange} // Aplica a máscara ao CNPJ
-            className="w-full mb-4 p-2 border rounded"
-            maxLength={18} // O CNPJ formatado tem 18 caracteres
-          />
-          <input
-            type="text"
-            placeholder="Nome da Empresa"
-            value={formData.name}
-            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            className="w-full mb-4 p-2 border rounded"
-          />
-          <button type="submit" className="bg-green-500 text-white w-full py-2 rounded">
-            Cadastrar
-          </button>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+              Email da Empresa
+            </label>
+            <input
+              id="email"
+              type="email"
+              placeholder="Email da Empresa"
+              value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-yellow-500 sm:text-sm sm:leading-6"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="CNPJ" className="block text-sm font-medium leading-6 text-gray-900">
+              CNPJ
+            </label>
+            <input
+              id="CNPJ"
+              type="text"
+              placeholder="CNPJ (XX.XXX.XXX/XXXX-XX)"
+              value={formData.CNPJ}
+              onChange={handleCNPJChange}
+              maxLength={18}
+              className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-yellow-500 sm:text-sm sm:leading-6"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900">
+              Nome da Empresa
+            </label>
+            <input
+              id="name"
+              type="text"
+              placeholder="Nome da Empresa"
+              value={formData.name}
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              className="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-yellow-500 sm:text-sm sm:leading-6"
+            />
+          </div>
+
+          <div>
+            <button
+              type="submit"
+              className="w-full flex justify-center rounded-md bg-yellow-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-yellow-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-500"
+            >
+              Cadastrar
+            </button>
+          </div>
         </form>
       </div>
     </div>

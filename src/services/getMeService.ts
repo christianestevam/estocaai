@@ -1,5 +1,11 @@
-// src/services/getMeService.ts
 import api from './api';
+
+export interface EmpresaData {
+  id: number;
+  CNPJ: string;
+  name: string;
+  email: string;
+}
 
 export interface UserData {
   id: number;
@@ -7,7 +13,7 @@ export interface UserData {
   name: string;
   lastName: string;
   role: string;
-  empresaId: number | null;
+  empresa: EmpresaData | null; // A empresa pode ser null
 }
 
 // Função para obter os dados do usuário autenticado

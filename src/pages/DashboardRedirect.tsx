@@ -1,7 +1,6 @@
-// src/pages/DashboardRedirect.tsx
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getMe } from '../services/getMeService'; // Importa o serviço getMe
+import { getMe } from '../services/getMeService'; // Assuma que você já tem um serviço para obter os dados do usuário
 
 export const DashboardRedirect: React.FC = () => {
   const [loading, setLoading] = useState(true);
@@ -10,15 +9,17 @@ export const DashboardRedirect: React.FC = () => {
   useEffect(() => {
     const checkUserData = async () => {
       try {
-        const userData = await getMe(); // Usa o serviço getMe para buscar os dados do usuário
-        if (userData.empresaId === null) {
-          navigate('/company-register'); // Redireciona para o cadastro de empresa se o empresaId for null
+        const userData = await getMe(); // Chama o serviço para obter os dados do usuário
+        if (userData.empresa === null) {
+          // Se o usuário não tiver empresa, redireciona para a página de cadastro de empresa
+          navigate('/company-register');
         } else {
-          navigate('/dashboard'); // Redireciona para o dashboard se o empresaId estiver presente
+          // Caso o usuário tenha empresa, redireciona para o dashboard
+          navigate('/dashboard');
         }
       } catch (error) {
         console.error('Erro ao verificar empresa:', error);
-        navigate('/login'); // Em caso de erro, redireciona para o login
+        navigate('/login'); // Redireciona para login em caso de erro
       } finally {
         setLoading(false);
       }
